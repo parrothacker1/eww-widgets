@@ -16,8 +16,10 @@
 (defvar time_alt true)
 (defvar bright_reveal false)
 (defvar bat_reveal false)
+(deflisten window_reveal "scripts/window.sh reveal")
 
 (deflisten workspace-list "scripts/workspaces.sh")
+(deflisten window-list "scripts/window.sh literal")
 
 (defwindow bar
   :monitor 0
@@ -36,7 +38,7 @@
 (whole_bar))
 
 (defwidget whole_bar[]
-  (box :orientation "v"
+  (centerbox :orientation "v" :vexpand false :space-evenly false
     (top)
     (center)
     (bottom)
@@ -56,12 +58,20 @@
 )
 
 (defwidget top[]
-  (box :space-evenly false :spacing 8 :orientation "v" :class "top-bar"
+  (box :space-evenly false :spacing 8 :orientation "v" :class "top-bar" :vexpand false
     (eventbox :onclick "notify-send 'Dashboard'"
       (image :path "assets/archlinux.svg" :image-height 40 :image-width 40)
       ;(box :halign "start" :style "color:#f00;font-size:3.1rem;padding-left:10px" "󰣇")
     )
     (workspaces)
+    (revealer :reveal window_reveal :transition "slidedown" :duration "300ms"
+      ;(box :orientation "v" :class "window-reveal" :vexpand true :spacing 7
+      ;  (label :text "" :style "padding-right:5px")
+      ;  (label :text "" :style "padding-right:3px")
+      ;  (label :text "" :style "padding-right:3px;color:#6082B6")
+      ;)
+      (literal :content window-list)
+    )
   )
 )
 

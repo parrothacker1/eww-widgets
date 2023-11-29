@@ -129,3 +129,12 @@ window {
 .progress-char progress {
   background:linear-gradient(#90EE90,#0FFF50,#32CD32,#4CBB17,#2AAA8A);
 }
+
+.window-reveal {
+  background:rgba(#4e4e4e,0.35);
+  margin:5px;
+  border-radius:10px;
+  font-size:1.5rem;
+  padding-top:10px;
+  padding-bottom:10px;
+}
